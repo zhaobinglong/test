@@ -1,0 +1,1 @@
+var gulp=require("gulp"),uglify=require("gulp-uglify"),jshint=require("gulp-jshint");gulp.task("compress",function(){gulp.src("*.js").pipe(uglify()).pipe(gulp.dest("build"))}),gulp.task("default",function(){gulp.run("compress"),gulp.watch("*.js",function(){gulp.run("compress")})});
