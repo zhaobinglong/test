@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>驾车路径规划</title>
+  <style type="text/css">
+    body{
+      margin:0;
+      height:100%;
+      width:100%;
+      position:absolute;
+    }
+    #iCenter{
+      position: absolute;
+      top:0;
+      left: 0;
+      right:0;
+      bottom:0;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="iCenter" ></div>
+
+  
+  <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=73c2181592fc4773ef505c5a0aadd6cb"></script>
+  <script type="text/javascript"> 
+    var lineArr= new Array();
+    //起、终点
+    var start_xy = new AMap.LngLat(116.379018,39.865026);
+    var end_xy = new AMap.LngLat(116.321139, 39.896028);
+    
+    // 地图初始化
+    function mapInit() {
+        //基本地图加载
+        mapObj = new AMap.Map("iCenter", {
+            rotateEnable: true,
+            dragEnable: true,
+            zoomEnable: true,
+            //二维地图显示视口
+            view: new AMap.View2D({
+               center:new AMap.LngLat(116.397428,39.90923),//地图中心点
+               zoom: 10 //地图显示的缩放级别
+            })
+        });
+    }
+    
+
+    
+    //驾车导航
+    function driving_route() {
+      var MDrive;
+      AMap.service(["AMap.Driving"], function() {
+        var DrivingOption = {
+          //驾车策略，包括 LEAST_TIME，LEAST_FEE, LEAST_DISTANCE,REAL_TRAFFIC
+          policy: AMap.DrivingPolicy.LEAST_TIME 
+        };        
+            MDrive = new AMap.Driving(DrivingOption); //构造驾车导航类 
+            //根据起终点坐标规划驾车路线
+            MDrive.search(start_xy, end_xy, function(status, result){
+              if(status === 'complete' && result.info === 'OK'){
+                for (var i = 0; i < result.routes.length; i++) {
+                    var route=result.routes[i];
+                    for (var j = 0; j < route.steps.length; j++) {
+                        var step=route.steps[j];
+                        for (var m = 0; m < step.path.length; m++) {
+                           var point=step.path[m];
+                           lineArr.push(new AMap.LngLat(point.lng, point.lat));
+                        };
+                    };
+                };
+                console.log(lineArr);
+                addline(lineArr);
+              }else{
+                alert(result);
+              }
+            }); 
+        });
+    }
+
+    //步行导航的回调函数   画线         
+    function addline(lineArr){ 
+      // console.log(0);
+      var polyline = new AMap.Polyline({ 
+                                      path:lineArr, //设置线覆盖物路径
+                                      strokeColor:"#3366FF", //线颜色
+                                      strokeOpacity:1, //线透明度 
+                                      strokeWeight:3, //线宽
+                                      strokeStyle:"solid", //线样式
+                                      strokeDasharray:[10,5] //补充线样式 
+                                      }); 
+      polyline.setMap(mapObj);  
+      mapObj.setFitView();        
+    }    
+
+
+
+    mapInit();
+    driving_route();
+
+
+    
+
+     
+
+  </script>  
+</body>
+</html>

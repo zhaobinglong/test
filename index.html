@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta http-equiv="cache-control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false" >
+
+<!--视图框架-->
+<div ng-view></div>
+
+</body>
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--angular核心文件-->
+<script type="text/javascript" src="./js/angular.js"></script>
+<!--路由-->
+<script type="text/javascript" src="./js/angular-route.js"></script>
+<!--cookie-->
+<script type="text/javascript" src="./js/angular-cookies.js"></script>
+
+<!-- 入口文件 -->
+<script type="text/javascript" src="app.js"></script>
+</html>

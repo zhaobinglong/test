@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<audio id="chatAudio" loop="loop" autoplay="autoplay" src="./music/1.mp3"></audio>
+	<button onclick='stopMusic()'>stop</button>
+	<button onclick='startMusic()'>start</button>
+</body>
+<script type="text/javascript">
+	var obj=document.getElementById('chatAudio');
+    
+    function stopMusic(){
+    	obj.pause();
+    }
+
+     function startMusic(){
+    	obj.play();
+    }   
+</script>
+</html>

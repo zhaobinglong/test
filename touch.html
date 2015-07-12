@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+	<title>touch</title>
+	<style type="text/css">
+    #main{width: 100px;height: 500px;}
+	</style>
+</head>
+<body>
+	<div id="main"></div>
+</body>
+<script type="text/javascript">
+	obj=document.getElementById("main");
+	obj.addEventListener('touchmove', movehalder);
+
+	function movehalder(evt){
+		console.log(evt.targetTouches);
+	}
+
+</script>
+</html>

@@ -1,0 +1,98 @@
+    html{
+    	height: 100%
+    }
+	body{
+		margin: 0;
+		padding: 0;
+		background: #333;
+		overflow: hidden;
+		font-family: 'microsoft yahei';
+		height: 100%
+	}
+	li,ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		overflow: hidden;
+	}
+	/* 使得图片居中 webkit-box */
+	li{
+		position: absolute;
+		height: 100%;
+		width: 100%
+	}
+
+	li img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+	/* 隐藏画布外的内容 */
+	#canvas{
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+	}
+	#canvas .pageOne{text-align: center;vertical-align: middle;}
+	#canvas .pageOne img{
+		width: 30%;
+		height: auto;
+		margin-top: 40%;
+        /*-webkit-animation:logo 2s linear;*/*/
+
+	}
+	#canvas .pageOne p{
+        color: #fff;
+        margin-top: 20px;
+        font-size: 40px;
+        display: none;
+        -webkit-transform:scale(0,0);
+	}
+
+	#canvas .pageTwo{
+		background: url("./imgs/2.jpg") no-repeat scroll 50% 50% ;background-size: auto 100%;
+	    font-size:32px; 
+	}
+
+	#canvas .pageTwo p{
+		-webkit-transform:translate(-320px,0)
+	}
+    
+    #canvas .pageThree h3{
+        padding-left: 10px;
+        color: #fff;
+    }
+
+	#canvas .pageThree p{
+		padding: 0 10px ;
+		color: #fff
+	}
+
+	#canvas .pageThree dl dd{font-size: 16px;color: #fff}
+
+	#canvas .pageThree a{display: block;margin: 0 auto;color: #fff;width: 200px;height: 40px;text-decoration: none;background-color: #f08600;text-align: center;border-radius: 6px;line-height: 40px;position: absolute;bottom: 40px;left: 50%;margin-left: -100px;}
+
+
+    /*logo旋转放大动画*/
+	@-webkit-keyframes logo /* Safari 和 Chrome */
+	{
+		0%   {-webkit-transform:rotate(0deg) scale(0,0);}
+		50%  {-webkit-transform:rotate(720deg) scale(0.5,0.5); }
+		100% {-webkit-transform:rotate(1080deg) scale(1,1); }
+	}
+
+	
+
+    /*文字变大渐出动画*/
+	@-webkit-keyframes txtRotate /* Safari 和 Chrome */
+	{
+	from {-webkit-transform:scale(0,0);opacity: 0}
+	to {-webkit-transform:scale(1,1);opacity: 1}
+	}	
+
+	/*文字向右平移动画*/
+	@-webkit-keyframes txtRight /* Safari 和 Chrome */
+	{
+	from {-webkit-transform:translate(-320px,0); opacity: 0}
+	to {-webkit-transform:translate(0px,0); opacity: 1}
+	}	
