@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+var a = 100
+var o = {
+    a:10,
+    b:{
+        a:12,
+        fn:function(){
+            console.log(this.a); //undefined
+            console.log(this); //window
+        }
+    }
+}
+var j = o.b.fn;
+j.call(o)
+// "use strict";
+// var b = 7;
+// var a = function () {
+// 	this.b = 3
+// }
+// var c = new a();
+// a.prototype.b = 9;
+// a();
+// console.log(c)
+// console.log(b);
+// console.log(c.b);
+// function a(){
+//     var user = "追梦子";
+//     console.log(this.user); //undefined
+//     console.log(this);　　//Window
+// }
+// // window.a();
+// let user = 'win'
+// var o = {
+//     user:"追梦子",
+//     fn:function(){
+//         console.log(this.user);  //追梦子
+//     }
+// }
+// o.fn()
+// let b = o.fn 
+// b()
+// b.bind(o)()
+</script>
+</html>

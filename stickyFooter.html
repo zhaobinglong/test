@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+	}
+body{ 
+	display: flex; 
+	flex-flow: column; 
+	min-height: 100vh;
+}
+header {
+	height: 100px;
+	background-color: red
+}
+.main{flex:1;}
+footer {
+	height: 100px;
+	background-color: green
+}
+</style>
+<body>
+    <header></header>
+     <h1>ok</h1>
+
+     <h1>ok</h1>
+    <div class="main">heelo</div>
+    <footer></footer>
+</body>
+<script type="text/javascript">
+	    // 自己实现一个new
+    function _new(_class, args) {
+      // 1.创建一个新的对象
+      var obj = {}
+      // 2.把新对象的 __proto__ 指向构造函数的 prototype
+      obj.__proto__ = _class.prototype
+      // 3.执行需要创建的类的构造函数，并临时改变构造函数的执行上下文(this)
+      var _newClass = _class.call(obj, args)
+      // 4. 如果构造函数有的返回值是一个 Object实例，则返回这个实例，否则返回新的对象
+      return _newClass instanceof Object ?  _newClass : obj
+    }
+
+    var Mobile = function(name) {
+    this.name = name
+}
+function myMobile(name){
+	this.name = name
+	this.showName=function() {
+		console.log(this.name)
+	}
+}
+
+
+let iPhone = new myMobile('iPhone')
+iPhone.showName() // 输出 iPhone
+// 用自己的new创建
+// var Android = _new(Mobile,'Android')
+// Android.show() // 输出 Android
+
+</script>
+</html>

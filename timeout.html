@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+// var myObject={
+// 	a: 1,
+// 	b: 2
+// }
+function Person(){
+	this.name = 'zbl',
+	this.say = function(){
+		console.log(this.name)
+	}
+}
+let myObject = new Person()
+console.log(myObject)
+for (var key in myObject) {
+  console.log(key);
+}
+
+
+for (var key in myObject) {
+	if (myObject.hasOwnProperty(key))
+  console.log(key);
+}
+</script>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	// 深拷贝
+// let srcObj = {
+//   'name': 'lilei',
+//   'age': '20'
+// };
+ 
+// let copyObj2 = Object.assign({}, srcObj, {
+//   'age': '21'
+// });
+ 
+// copyObj2.age = '23';
+ 
+// console.log('srcObj', srcObj); //{ name: 'lilei', age: '22' }
+let target = { a: {name: 'bb'}, b: 2 };
+let source = { b: 4, c: 5 };
+let rt = {...target, ...source}
+console.log(rt)
+rt.a.name = 'cc'
+console.log(target)
+console.log(rt)
+
+</script>
+</html>

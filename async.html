@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+// async function testAsync() {
+//     return "hello async";
+// }
+
+// const result = testAsync();
+// console.log(result);
+
+// testAsync().then(v => {
+//     console.log(v);    // 输出 hello async
+// });
+
+// function getSomething() {
+//     return "something";
+// }
+
+// async function testAsync() {
+//     return Promise.resolve("hello async");
+// }
+
+// async function test() {
+//     const v1 = await getSomething();
+//     const v2 = await testAsync();
+//     console.log(v1);
+//     console.log(v2)
+// }
+// console.log('1')
+// test();
+// console.log('2')
+/**
+ * 传入参数 n，表示这个函数执行的时间（毫秒）
+ * 执行的结果是 n + 200，这个值将用于下一步骤
+ */
+function takeLongTime(n) {
+    return new Promise(resolve => {
+        setTimeout(() => resolve(n + 200), n);
+    });
+}
+
+function step1(n) {
+    console.log(`step1 with ${n}`);
+    return takeLongTime(n);
+}
+
+function step2(n) {
+    console.log(`step2 with ${n}`);
+    return takeLongTime(n);
+}
+
+function step3(n) {
+    console.log(`step3 with ${n}`);
+    return takeLongTime(n);
+}
+
+function doIt() {
+    console.time("doIt");
+    const time1 = 300;
+    step1(time1)
+        .then(res => step2(res))
+        .then(res => step3(res))
+        .then(result => {
+            console.log(`result is ${result}`);
+            console.timeEnd("doIt");
+        });
+}
+
+doIt();
+
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+var addStrings = function(num1, num2) {
+    let res = ''
+    let carry = 0
+    let i = num1.length - 1
+    let j = num2.length - 1
+
+    while(i >= 0 || j >= 0) {
+        let n1 = i >= 0 ? num1[i] - '0' : 0
+        let n2 = j >= 0 ? num2[j] - '0' : 0
+        let tmp = n1 + n2 + carry
+        res = (tmp % 10) + res
+        carry = tmp >= 10 ? 1 : 0
+
+        i--
+        j--
+    }
+
+    return carry > 0 ? carry + res: res
+}
+console.log(addStrings('1234','1234'))
+// var multiply = function(num1, num2) {
+//   // 如果有一方是0，则直接返回0
+//   if(num1 == '0' || num2 == '0') return '0';
+//   num1 = num1 + '';
+//   num2 = num2 + '';
+//   let l1 = num1.length
+//   let l2 = num2.length
+//   let store = new Array(l1 + l2 - 1).fill(0)
+//   console.log(store)
+//   let t = 0
+//   let r = ''
+//   for( let i = 0; i < l2; i++ ){
+//     for( let j = 0; j < l1; j++ ){
+//       store[i + j] += (num2[i] * num1[j])
+//     }
+//   }
+//   console.log(store)
+//   let k = store.length;
+//   while(k--){
+//     t += store[k];
+//     console.log('t => ', t)
+//     r = t % 10 + r; // 取余数
+//     console.log('r => ', r)
+//     t = t / 10 | 0; // 取整
+//     console.log('t => ', t)
+//     console.log('=========')
+//   }
+//   return t > 0 ? (t + r) : r;
+// }	
+// console.log(multiply('123','45'))
+</script>
+</html>

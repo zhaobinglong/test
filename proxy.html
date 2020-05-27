@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+  let test = {
+    name: "小红"
+  };
+  test = new Proxy(test, {
+    get(target, key) {
+      console.log('获取了getter属性');
+      return target[key];
+    },
+    set(target, key,value) {
+      console.log('设置一次属性');
+      target[key] = 'lalal'
+      //return target[key];
+      return true
+    }    
+  });
+  console.log(test.name);
+  test.name = 'zbl'
+  console.log(test.name)
+</script>
+</html>

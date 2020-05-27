@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+// function Animal(name = 'animal') {
+//   this.name = name ; 
+// }
+// Animal.prototype.eat= function () {
+//   console.log(this.name + '正在吃东西')
+// };
+// function Cat(furColor){ 
+//    Animal.call(this,'小花猫');
+//    this.furColor = furColor ;
+// };
+
+// (function (subType,superType){
+//   let prototype = Object.create(superType.prototype);//创建对象
+//   prototype.constructor = subType;//还原它本身构造指向
+//   subType.prototype = prototype;//赋值原型
+// })(Cat,Animal)
+
+// let tom = new Cat('black');
+// console.log(tom);
+
+// console.log(tom instanceof Animal); // false
+// console.log(tom instanceof Cat); // true
+var a = {
+    user:"汪某",
+    fn:function(){
+      console.log(this.user);
+      console.log(arguments[0])
+    }
+}
+// var b = a.fn;
+// b(); //undefined，你这样直接调用，死打印不出user的
+
+var b = a.fn;
+b.call(a,123); // 这样就可以打印出来，call里面还可以添加多个参数
+
+var b = a.fn;
+b.apply(a,[123,345,678])
+</script>
+</html>

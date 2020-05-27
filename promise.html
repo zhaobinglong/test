@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+// new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve('zbl')
+//   }, 1000)
+// }).then((data) => {
+//   console.log('result1', data)
+//   //dosomething
+//   return test(data)
+// }).then((data) => {
+//   console.log('result2', data)
+// })
+
+// function test(id) {
+//   return new Promise(((resolve) => {
+//     setTimeout(() => {
+//       resolve(id + 'llll')
+//     }, 1000)
+//   }))
+// }
+// let p = new Promise(function(resolve, reject){
+//     if(true){
+//         resolve('123')
+//     }else{
+//         reject('456')
+//     }
+// })
+// // console.log(p)
+
+// console.log(p)
+let p =new Promise((resolve,reject)=>{
+    resolve(1);
+});
+
+p.then(data=>{
+	console.log(data)
+    return 2; //返回一个普通值
+}).then(data=>{
+    console.log(data); //输出2
+});
+</script>
+</html>

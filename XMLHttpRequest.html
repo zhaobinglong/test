@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+function ajax(url){
+    // var xmlhttp;
+    // if(window.XMLHttpRequest){
+        // xmlhttp = new XMLHttpRequest();
+    // }else{
+        // xmlhttp = ActiveXObject("Microsoft.XMLHTTP"); // code for IE6, IE5
+    // }
+    // new一个XHR的对象
+    let xmlhttp = new XMLHttpRequest();
+    let data = {} // 如果是post就有data
+
+    //判定执行状态
+    xmlhttp.onreadystatechange = function(){
+        /* readyState
+            0: 请求未初始化
+            1: 服务器连接已建立
+            2: 请求已接收
+            3: 请求处理中
+            4: 请求已完成，且响应已就绪
+        status
+            200:请求成功
+            404:未找到
+            500:服务器内部错误 */
+        if (xmlhttp.readyState==4 && xmlhttp.status==200){
+            document.getElementById("myDiv").innerHTML=xmlhttp.responseText;//获得字符串形式的响应数据
+        }
+      }
+    xmlhttp.open("Get","url",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send(data);    
+}
+
+// ajax('https://baidu.com')
+var o ={
+	f:function(r){
+		console.log(+new Date , r); 
+	    return this;
+	}
+};
+o.f(1).f(2).f(3).f(4).f(5).f(6).f(7).f(8).f(9);
+</script>
+</html>

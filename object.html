@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	function Fruit() {
+    this.value = 10;
+    this.quantity = 35;
+}
+function Apple(name, color) {
+    this.name = name;
+    this.color = color
+}
+Apple.prototype = new Fruit();
+var apple1 = new Apple("Apple", "Red");
+console.log(apple1);
+console.log(apple1.quantity)
+console.log(Object.prototype.__proto__)
+</script>
+</html>

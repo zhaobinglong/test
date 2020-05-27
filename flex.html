@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+.f{
+  display: flex;	
+  width: 100%;
+  background-color: red
+}
+.s {
+	flex: auto;
+	height: 200px;
+	width: 100px;
+	border: 1px solid green;
+}
+</style>
+<body>
+<div class="f">
+	<div class="s"></div>
+	<div class="s"></div>
+</div>
+</body>
+<script type="text/javascript">
+// 我先来，模拟图片加载过程
+function loadImg(url) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = function() {
+        console.log(url, "加载完成");
+        resolve(img);
+      };
+      img.onerror = function() {
+        reject(new Error('Error at:' + url));
+      };
+      img.src = url;
+    })
+  }
+  function multiRequest(urls, maxNum) {
+    const firstMaxNum = urls.splice(0, maxNum);
+    let promises = firstMaxNum.map((url, index)=>{
+      return loadImg(url).then(()=>{
+        return index
+      })
+    })
+    return urls.reduce((res, cur)=>{
+      return res.then(()=>{
+        return Promise.race(promises)
+      }).then((idx)=>{
+        promises[idx] = loadImg(cur).then(()=>{
+          return idx
+        })
+      })
+    }, Promise.resolve()).then(()=>{
+      return Promise.all(promises)
+    })  
+  }
+
+let urls = [
+  'https://pic1.zhimg.com/v2-4c2b665e242ffdcbbf893a7fc4841898_1200x500.jpg',
+  'https://pic1.zhimg.com/v2-4c2b665e242ffdcbbf893a7fc4841898_1200x500.jpg',
+  'https://pic1.zhimg.com/v2-4c2b665e242ffdcbbf893a7fc4841898_1200x500.jpg',
+  'https://pic1.zhimg.com/v2-4c2b665e242ffdcbbf893a7fc4841898_1200x500.jpg',
+  'https://pic1.zhimg.com/v2-4c2b665e242ffdcbbf893a7fc4841898_1200x500.jpg'
+]
+multiRequest(urls, 4).then(()=>{
+  console.log('finish')
+})
+
+</script>
+</html>

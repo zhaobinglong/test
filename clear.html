@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style>
+.wrap {
+    width: 200px;
+    border: 1px solid #333;
+}
+.wrap:after {
+    content: 'dfcffff';
+    display: block;
+    /*clear: both;*/
+}
+.left {
+    float: left;
+    background: blue;
+    height: 100px;
+    width: 100px;
+}
+.right {
+    float: left;
+    background: red;
+    height: 50px;
+    width: 100px;
+}
+</style>
+<body>
+    <div class='wrap'>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>

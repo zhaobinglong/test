@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+// let val = 'tom'
+// let person = {}
+// Object.defineProperty(person,'name',{
+//     get(){
+//         console.log('name属性被读取了...');
+//         return val;
+//     },
+//     set(newVal){
+//         console.log('name属性被修改了...');
+//         val = newVal;
+//     }
+// })
+// person.name = 'zbl'
+// console.log(person.name)
+
+
+function Ofo() {}
+
+function Bick() {
+	this.name = 'mybick'
+}
+
+var myBick = new Ofo()
+
+Ofo.prototype = new Bick()
+
+var youbick = new Bick()
+
+console.log(myBick.name)
+
+console.log(youbick.name)
+</script>
+</html>
