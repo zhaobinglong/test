@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="./daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="./daterangepicker.css"/>
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div style="width: 960px;margin: 100px auto"  >
+		<div class="input-group" style="width:300px;position: relative;">
+		  <input type="text" class="form-control" name="daterange"  value="01/01/2018 - 01/15/2018"/>
+	      <span  class="glyphicon glyphicon-calendar" style="font-size: 20px; position: absolute; top: 6px;right: 12px; line-height: 100%; z-index: 3"></span>		
+		</div>
+	</div>
+
+<script>
+// 关于选择日期 ，点击输入框，弹出日期选择框， 显示当前月与上一月；
+// 1. 根据当前文档的创建日期，在选择器上作出标记；
+// 2. 默认为选择日期为,当前日期到上14天(两周),但不超过文档创建日期；
+// 3. 奇数次点击，选定单日（开始日期与结束日期为同一天），同时修改输入框中两个日期；可选的单日为超过一年；也不超过文档创建日期；
+// 4. 偶数次点击，选定开始日期或结束日期，取决于它相对于单日的前后，
+// 5. 开始与结束日期为深蓝，中间日期为淡蓝。
+// 6.点击确定，执行任务；初始化时也执行同一任务；
+// 7. 取消输入框中日期恢复；
+// 8. 日程图标 <span  class="glyphicon glyphicon-calendar"></span>
+// 9. 最大跨度31天
+
+var documentCreate = moment(); // 文档新建日期
+
+$(function() {
+var start = moment().subtract(14, 'days');
+
+var end = moment();
+
+$('input[name="daterange"]').daterangepicker({
+    opens:'right',
+    minDate: '07/25/2020', // 用户可以选择的最早日期
+    maxSpan: {"days": 31}, // 最大可选的间隔天数
+	startDate: start,      // 默认开始日期
+	endDate: end,          // 默认结束日期
+	documentCreateDate: '07/25/2020', // 文档新建日期
+ }, function(start, end, label) {
+ 	// 这里是选择日后的回调
+ 	alert("选择了一个新的日期: "+start.format('YYYY-MM-DD') +' to '+end.format('YYYY-MM-DD'))
+ });
+});
+</script>
+</body>
+</html>
