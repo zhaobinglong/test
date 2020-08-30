@@ -7,18 +7,18 @@
 
 </body>
 <script type="text/javascript">
-	function Fruit() {
-    this.value = 10;
-    this.quantity = 35;
-}
-function Apple(name, color) {
-    this.name = name;
-    this.color = color
-}
-Apple.prototype = new Fruit();
-var apple1 = new Apple("Apple", "Red");
-console.log(apple1);
-console.log(apple1.quantity)
-console.log(Object.prototype.__proto__)
+// function Person() {
+//   this.name='zbl'
+// }
+// let p = new Person()
+// console.log(p)
+// console.log(p.__proto__ == Person.prototype)
+
+// console.log(Person.prototype.__proto__ == Object.prototype)
+
+let o = new Object()
+// console.log(o.__proto__ == Object.prototype)
+console.log(Object.prototype.constructor == Object)
+console.log(Object)
 </script>
 </html>

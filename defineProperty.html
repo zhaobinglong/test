@@ -4,15 +4,31 @@
 	<title></title>
 </head>
 <body>
-
+<input type="text" id="txt">
+<p id="show"></p>
 </body>
 <script type="text/javascript">
+
+    var obj = {}
+    Object.defineProperty(obj, 'txt', {
+        get: function () {
+            return obj
+        },
+        set: function (newValue) {
+            document.getElementById('txt').value = newValue
+            document.getElementById('show').innerHTML = newValue
+        }
+    })
+    document.addEventListener('keyup', function (e) {
+        obj.txt = e.target.value
+    })
+
 // let val = 'tom'
 // let person = {}
 // Object.defineProperty(person,'name',{
 //     get(){
 //         console.log('name属性被读取了...');
-//         return val;
+//         return person.name
 //     },
 //     set(newVal){
 //         console.log('name属性被修改了...');
@@ -23,20 +39,20 @@
 // console.log(person.name)
 
 
-function Ofo() {}
+// function Ofo() {}
 
-function Bick() {
-	this.name = 'mybick'
-}
+// function Bick() {
+// 	this.name = 'mybick'
+// }
 
-var myBick = new Ofo()
+// var myBick = new Ofo()
 
-Ofo.prototype = new Bick()
+// Ofo.prototype = new Bick()
 
-var youbick = new Bick()
+// var youbick = new Bick()
 
-console.log(myBick.name)
+// console.log(myBick.name)
 
-console.log(youbick.name)
+// console.log(youbick.name)
 </script>
 </html>

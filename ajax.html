@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  </head>
+  <body>
+    <h1>
+      This is a static template, there is no bundler or bundling involved!
+    </h1>
+  </body>
+  <script type="text/javascript">
+
+
+    function ajax(url){
+        // new一个XHR的对象
+        let xmlhttp = new XMLHttpRequest();
+        let data = {} // 如果是post就有data
+
+        //判定执行状态
+        xmlhttp.onreadystatechange = function(res){
+           console.log(res)
+        } 
+        xmlhttp.open("Get",url,true);
+        xmlhttp.send(data);    
+    }
+
+    ajax('https://api.apiopen.top/getSingleJoke?sid=28654780')
+  </script>
+</html>

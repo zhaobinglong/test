@@ -7,19 +7,19 @@
 
 </body>
 <script type="text/javascript">
-var a = 100
-var o = {
-    a:10,
-    b:{
-        a:12,
-        fn:function(){
-            console.log(this.a); //undefined
-            console.log(this); //window
-        }
-    }
-}
-var j = o.b.fn;
-j.call(o)
+// var a = 100
+// var o = {
+//     a:10,
+//     b:{
+//         a:12,
+//         fn:function(){
+//             console.log(this.a); //undefined
+//             console.log(this); //window
+//         }
+//     }
+// }
+// var j = o.b.fn;
+// j.call(o)
 // "use strict";
 // var b = 7;
 // var a = function () {
@@ -37,16 +37,57 @@ j.call(o)
 //     console.log(this);　　//Window
 // }
 // // window.a();
-// let user = 'win'
+
+
+// var user = 'win'
 // var o = {
 //     user:"追梦子",
 //     fn:function(){
-//         console.log(this.user);  //追梦子
+//     	console.log(arguments)
+//         // console.log(this.user);  //追梦子
 //     }
 // }
-// o.fn()
+// // o.fn()
+
 // let b = o.fn 
-// b()
-// b.bind(o)()
+// // b()
+
+
+// b.bind(o)(1,2,3,4)
+// b.call(o,1,2,3,4)
+// b.apply(o,[1,2,3,4])
+
+
+
+// var a = '100'
+// function bar() {
+// 	console.log("bar called");
+// 	console.log(this.a); // undefined
+// }
+
+// function foo() {
+// 	var a = 1;
+// 	this.bar()
+// }
+
+// foo();
+
+function show(sex){
+
+console.log("普通函数"+sex);
+
+}
+
+var person={
+
+name:"aa",
+
+age:14
+
+};
+
+show.call(person,"男");
+
+
 </script>
 </html>

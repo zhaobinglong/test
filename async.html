@@ -39,40 +39,97 @@
  * 传入参数 n，表示这个函数执行的时间（毫秒）
  * 执行的结果是 n + 200，这个值将用于下一步骤
  */
-function takeLongTime(n) {
-    return new Promise(resolve => {
-        setTimeout(() => resolve(n + 200), n);
-    });
+// function takeLongTime(n) {
+//     return new Promise(resolve => {
+//         setTimeout(() => resolve(n + 200), n);
+//     });
+// }
+
+// function step1(n) {
+//     console.log(`step1 with ${n}`);
+//     return takeLongTime(n);
+// }
+
+// function step2(n) {
+//     console.log(`step2 with ${n}`);
+//     return takeLongTime(n);
+// }
+
+// function step3(n) {
+//     console.log(`step3 with ${n}`);
+//     return takeLongTime(n);
+// }
+
+// function doIt() {
+//     console.time("doIt");
+//     const time1 = 300;
+//     step1(time1)
+//         .then(res => step2(res))
+//         .then(res => step3(res))
+//         .then(result => {
+//             console.log(`result is ${result}`);
+//             console.timeEnd("doIt");
+//         });
+// }
+
+// doIt();
+
+
+// async function async1(){
+//   console.log('async1 start')
+//   await async2()
+//   console.log('async1 end')
+// }
+// async function async2(){
+//   console.log('async2')
+// }
+// console.log('script start')     
+// setTimeout(function(){
+//   console.log('setTimeout') 
+// },0)  
+// async1();
+// new Promise(function(resolve){
+//   console.log('promise1')
+//   resolve();
+// }).then(function(){
+//   console.log('promise2')
+// })
+// console.log('script end')
+
+// let arr = [[1,2],[3,4]]
+// console.log(arr.flat())
+
+function deepClone(obj) {
+    let objClone = Array.isArray(obj) ? [] : {};
+    if (obj && typeof obj === "object") {
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                if (obj[key] && typeof obj[key] === "object") {
+                     objClone[key] = this.deepClone(obj[key]);
+                } else {
+                    objClone[key] = obj[key]; 
+                }
+            }
+        }
+    }
+    return objClone;
 }
 
-function step1(n) {
-    console.log(`step1 with ${n}`);
-    return takeLongTime(n);
-}
+// let oldTarget = {
+//     a: 5,
+//     b: [1,2,3]
+// }
 
-function step2(n) {
-    console.log(`step2 with ${n}`);
-    return takeLongTime(n);
-}
+// // let newTarget = JSON.parse(JSON.stringify(oldTarget));
+// let newTarget = deepClone(oldTarget);
+// oldTarget.a = 100
+// oldTarget.b[0] = 100
+// console.log(oldTarget, newTarget)
 
-function step3(n) {
-    console.log(`step3 with ${n}`);
-    return takeLongTime(n);
+let arr = [1,2,3]
+for (let key in arr) {
+    console.log(arr[key])
 }
-
-function doIt() {
-    console.time("doIt");
-    const time1 = 300;
-    step1(time1)
-        .then(res => step2(res))
-        .then(res => step3(res))
-        .then(result => {
-            console.log(`result is ${result}`);
-            console.timeEnd("doIt");
-        });
-}
-
-doIt();
 
 </script>
 </html>

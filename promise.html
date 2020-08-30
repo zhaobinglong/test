@@ -36,15 +36,41 @@
 // // console.log(p)
 
 // console.log(p)
-let p =new Promise((resolve,reject)=>{
-    resolve(1);
-});
+// let p =new Promise((resolve,reject)=>{
+//     resolve(1);
+// });
 
-p.then(data=>{
-	console.log(data)
-    return 2; //返回一个普通值
-}).then(data=>{
-    console.log(data); //输出2
-});
+// p.then(data=>{
+// 	console.log(data)
+//     return 2; //返回一个普通值
+// }).then(data=>{
+//     console.log(data); //输出2
+// });
+
+// 链式调用的目的是为了消去回调地狱的问题，
+// 关键是要把多个异步的调用，都封装为promise，在每次then的时候，
+// 把上一步的结果，给当前的异步函数传递进去，然后return一个promise到链式中
+new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('zbl')
+  }, 1000)
+}).then((data) => {
+  console.log('result1', data)
+  //dosomething
+  return getUser(data)
+  // setTimeout(() => {
+  //     resolve(data + 'llll')
+  // }, 1000)
+}).then((data) => {
+  console.log('result2', data)
+})
+// test返回一个promise对象
+function getUser(id) {
+  return new Promise(((resolve) => {
+    setTimeout(() => {
+      resolve(id + 'llll')
+    }, 1000)
+  }))
+}
 </script>
 </html>

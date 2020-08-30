@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+class Logger {
+    constructor () {
+        if (!Logger._singleton) {
+            Logger._singleton = this;
+        }
+        return Logger._singleton;
+    }
+
+    log (...args) {
+        console.log(...args);
+    }
+}
+
+const logger = new Logger();
+logger.log('msg');
+
+// 这里大概写了 1000 行代码
+
+const logger2 = new Logger();
+logger.log('new msg');
+
+
+console.log(logger === logger2)
+
+class p {
+    constructor () {
+        this.gender = 'boy'
+    }
+    run(name) {
+    	console.log(name + 'is a ' + this.gender)
+    }
+}
+let zb = new P('boy')
+zb.run('赵冰龙')
+
+</script>
+</html>
