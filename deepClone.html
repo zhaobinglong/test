@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+function deepClone(obj) {
+    let objClone = Array.isArray(obj) ? [] : {};
+    if (obj && typeof obj === "object") {
+        for (let key in obj) {
+            // 不要拷贝原型链上的数据
+            if (obj.hasOwnProperty(key)) {
+                if (obj[key] && typeof obj[key] === "object") {
+                    if (Object.prototype.toString.call(obj[key]) === '[object Date]') {
+                      objClone[key] = new Date(obj[key].valueOf())
+                    } else if (Object.prototype.toString.call(obj[key]) === '[object RegExp]') {
+                      objClone[key] = obj[key].constructor(obj[key].valueOf())
+                    }else {
+                      objClone[key] = this.deepClone(obj[key]);
+                    }
+                } else {
+                    objClone[key] = obj[key]; 
+                }
+            }
+        }
+    }
+    return objClone;
+}
+
+let obj = {
+   name:"zhaobinglong",
+   hoby: ['ball', 'game', 'movie'],
+   child: {
+   	 name: 'summer',
+   	 gender: 'girl'
+   },
+   sister: null,
+   car: undefined
+}
+obj.reg = /\s+/g
+obj.time = new Date()
+console.log(obj)
+// console.log(Object.prototype.toString.call(obj.time) === '[object Date]')
+// const Constructor = obj.constructor
+
+let copyobj = deepClone(obj)
+obj.car = 'big G'
+obj.sister = 'miao'
+console.log(copyobj)
+</script>
+</html>
