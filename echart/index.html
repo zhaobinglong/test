@@ -154,8 +154,7 @@
 	function unloadHandle(){
       // alert('start unloadHandle')
       // event.returnValue="确定离开当前页面吗？";
-     var times = new Date().getTime()
-     var url = 'http://m.baige.me/api/getLinks?bookId=' + times
+     var url = 'http://m.baige.me/api/getLinks?bookId=55'
 	  // $.post('/api/closePage',{bookId:bookId,bookViewId:bookViewId});
   	fetch(url)
 	  .then(function(response) {
