@@ -72,22 +72,70 @@
 
 // foo();
 
-function show(sex){
+// function show(sex){
 
-console.log("普通函数"+sex);
+// console.log("普通函数"+sex);
 
+// }
+
+// var person={
+
+// name:"aa",
+
+// age:14
+
+// };
+
+// show.call(person,"男");
+
+// var value = 1;
+
+// function foo() {
+//     console.log(value);
+// }
+
+// function bar() {
+//     var value = 2;
+//     foo();
+// }
+
+// bar();
+// a=2
+// function foo() {
+//     console.log(a);
+//     a = 1;
+// }
+
+// foo(); // ???
+
+// function bar() {
+//     a = 1;
+//     console.log(a);
+// }
+// bar(); // ???
+
+// if (true) {
+// 	var i = 10
+// }
+// console.log(i); // 10
+// let obj={
+//     name:"kk",
+//     fn:function(){
+//         setTimeout(() => {console.log(this)});
+//     }
+// }
+// obj.fn(); // undefined
+
+
+var name = 'window'; 
+
+var A = {
+   name: 'A',
+   sayHello: () => {
+      console.log(this.name)
+   }
 }
 
-var person={
-
-name:"aa",
-
-age:14
-
-};
-
-show.call(person,"男");
-
-
+A.sayHello();// 还是以为输出A ? 错啦，其实输出的是window
 </script>
 </html>

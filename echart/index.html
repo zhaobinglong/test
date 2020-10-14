@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+</head>
+<script type="text/javascript" src="./echarts.min.js"></script>
+
+<body onbeforeunload="unloadHandle()">
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+</body>
+    <script type="text/javascript">
+    	// 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        var total = 14
+        var startDateString = '2020-9-20'
+        var endDateString='2020-10-12'
+        var bookId = '114592'
+        var page = 1
+        var res = []
+
+        function deepGetData(page, total) {
+          var self = this
+          if (page <= total) {
+          	var url = 'http://m.baige.me/api/stat/pageView?bookId=' + bookId + '&startDateString=' + startDateString + '&endDateString=' + endDateString +'&page=' + page
+          	fetch(url)
+			  .then(function(response) {
+			    return response.json();
+			  })
+			  .then(function(myJson) {
+			    res.push(myJson / 1000)
+                self.deepGetData(page + 1, total)
+			  });
+          } else {
+          	console.log(res)
+            this.initCanvas(res)
+          }
+        }
+
+
+		
+        deepGetData(1, total)
+
+        function initCanvas(res) {
+
+	        // 指定图表的配置项和数据
+			var base = +new Date(startDateString);
+            // var seconds = new Date(endDateString).getTime() / 1000 - parseInt(new Date(startDateString).getTime() / 1000);
+            // var timeDay = parseInt(seconds / 60 / 60 / 24);   
+			// var oneDay = 24 * 3600 * 1000;
+			var date = [];
+
+			var data = res
+
+			for (var i = 1; i <= total; i++) {
+			    // var now = new Date(base += oneDay);
+			    date.push(i);
+			    // data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
+			}
+
+			let option = {
+			    // tooltip: {
+			    //     trigger: 'axis',
+			    //     position: function (pt) {
+			    //         return [pt[0], '10%'];
+			    //     }
+			    // },
+			    title: {
+			        left: 'center',
+			        text: '这里是自定义标题',
+			    },
+			    toolbox: {
+			        feature: {
+			            dataZoom: {
+			                yAxisIndex: 'none'
+			            },
+			            restore: {},
+			            saveAsImage: {}
+			        }
+			    },
+			    // xAxis: {
+			    //     type: 'category',
+			    //     boundaryGap: false,
+			    //     data: date
+			    // },
+		        xAxis: {
+
+			        type: 'category',
+			        data: date
+			    },
+			    yAxis: {
+			        type: 'value',
+		            axisLabel: {
+		                formatter: function (val) {
+		                    return val + 's';
+		                }
+		            },
+			    },
+		       series: [{
+			        data: data,
+			        type: 'bar'
+			    }],
+			    dataZoom: [{
+			        type: 'inside',
+			        start: 0,
+			        end: 10
+			    }, {
+			        start: 0,
+			        end: 10,
+			        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+			        handleSize: '80%',
+			        handleStyle: {
+			            color: '#fff',
+			            shadowBlur: 3,
+			            shadowColor: 'rgba(0, 0, 0, 0.6)',
+			            shadowOffsetX: 2,
+			            shadowOffsetY: 2
+			        }
+			    }],
+			    // series: [
+			    //     {
+			    //         name: '模拟数据',
+			    //         type: 'line',
+			    //         smooth: true,
+			    //         symbol: 'none',
+			    //         sampling: 'average',
+			    //         itemStyle: {
+			    //             color: 'rgb(255, 70, 131)'
+			    //         },
+			    //         areaStyle: {
+			    //             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+			    //                 offset: 0,
+			    //                 color: 'rgb(255, 158, 68)'
+			    //             }, {
+			    //                 offset: 1,
+			    //                 color: 'rgb(255, 70, 131)'
+			    //             }])
+			    //         },
+			    //         data: data
+			    //     }
+			    // ]
+			};
+
+
+	        // 使用刚指定的配置项和数据显示图表。
+	        myChart.setOption(option);
+	    }
+    </script>
+<script type="text/javascript">
+
+	window.addEventListener('pagehide', unloadHandle, false);
+
+
+	function unloadHandle(){
+      // alert('start unloadHandle')
+      // event.returnValue="确定离开当前页面吗？";
+     var times = new Date().getTime()
+     var url = 'http://m.baige.me/api/getLinks?bookId=' + times
+	  // $.post('/api/closePage',{bookId:bookId,bookViewId:bookViewId});
+  	fetch(url)
+	  .then(function(response) {
+	    return response.json();
+	  })
+	  .then(function(myJson) {
+	  });
+	}
+ 
+</script>
+</html>

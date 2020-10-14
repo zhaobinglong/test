@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	// 给执行元素点击事件，每次执行addEvent，if都会被执行一次
+// function addEvent() {
+//   if (window.addEventListener) {
+//   	console.log('do if')
+//   	addEvent = function(){
+//   		console.log('do action')
+//   	}
+//     //element.addEventListener(type, handler, false);
+//   } else if (window.attachEvent){
+//   	addEvent = function(){
+//   	  console.log('do if else')
+//     }
+//     //element.attachEvent('on' + type, handler);
+//   } else {
+//   	addEvent = function(){
+//   		console.log('do else')
+//   	}
+  	
+//     //element['on' + type] = handler;
+//   }
+//   addEvent()
+// }
+
+// addEvent()
+// addEvent()
+// addEvent()
+// addEvent()
+// addEvent()
+
+// function test() {
+//  var presetArgs = [].slice.call(arguments, 1)
+//  console.log(presetArgs)
+// }
+
+// test(1,2,3,4)
+
+// function curry(fn) {
+//   // 保存预置参数
+//   const presetArgs = [].slice.call(arguments, 1)
+//   // 返回一个新函数
+//   function curried () {
+//     // 新函数调用时会继续传参
+//     const restArgs = [].slice.call(arguments)
+//     const allArgs = [...presetArgs, ...restArgs]
+//     return curry.call(null, fn, ...allArgs)
+//   }
+//   // 重写toString
+//   curried.toString = function() {
+//     return fn.apply(null, presetArgs)
+//   }
+//   return curried;
+// }
+
+
+// function dynamicAdd() {
+//   return [...arguments].reduce((prev, curr) => {
+//     return prev + curr
+//   }, 0)
+// }
+// var add = curry(dynamicAdd);
+// let a = add(1)(2)(3)(4) // 10
+// console.log(a)
+// let b = add(1, 2)(3, 4)(5, 6) // 21
+// console.log(b)
+
+// var p1 = {}    // 方法一：对象字面量的方式
+// var p2 = new Object();              // 方法二：Object是系统的构造函数，new的方式
+// function P(){};                                   // 方法三：定义构造函数创建对象，按约定首字母大写，后面原型继承都用它
+// var p3 = new P();  
+// console.log(p1)
+// console.log(p2)
+// console.log(p3)
+// console.log(p1)
+// console.log(p1.valueOf())
+// var a = {}
+// a.valueOf = function(){ return "hello world!" }
+// console.log(a)
+// console.log(a == "hello world!") // true
+// console.log(a === "hello world!") // false，严格等于操作符会比较数据类型
+// var num = 123;
+// console.log(num.valueOf());  //输出：123
+// console.log(num.valueOf());  //输出：'number'
+let a = {
+	name: [1,2]
+}
+let b = {
+	name: [1,2]
+}
+console.log(a.name.toString() == b.name.toString())
+console.log(a.name.toString())
+</script>
+</html>

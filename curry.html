@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+// function sum(a, b, c) {
+//   return a + b + c;
+// }
+
+// function curry(fn) {
+//   return function currify() {
+//     const args = Array.prototype.slice.call(arguments);
+//     return args.length >= fn.length ?
+//       fn.apply(null, args) :
+//     currify.bind(null, ...args);
+//   }
+// }
+
+// var currySum = curry(sum);
+
+// console.log(currySum(1)(2)(3))
+
+// function test() {
+// 	 var args = Array.prototype.slice.call(arguments);
+// 	 console.log(arguments.length)
+// 	 console.log(args)
+// }
+
+// test(1,2,3,4)
+// function add () {
+//     var args = Array.prototype.slice.call(arguments);
+//     var fn = function () {
+//         var fn_args = Array.prototype.slice.call(arguments);
+//         return add.apply(null, args.concat(fn_args));
+//     };
+//     fn.valueOf = function () {
+//         return args.reduce(function (a, b) {
+//             return a + b;
+//         });
+//     };
+//     return fn;
+// }
+// let a = add(1)(2)(3)
+// console.log(a)
+
+const add = (...param: number[]): Function => {
+    const addSum = param.reduce((prev, next) => prev + next)
+    const fn = (...args: number[]) => {
+        const sum = args.reduce((prev, next) => prev + next)
+        return add(addSum + sum)
+    }
+    fn.valueOf = () => addSum
+    return fn
+}
+
+console.log(+add(1)(1, 1, 1)(1)) // 5
+console.log(+add(1)(2)(3, 4)) // 10
+
+</script>
+</html>

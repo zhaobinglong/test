@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+// var a = 100
+// function fn(){
+//     var a =10;
+//     return function(){
+//         a++; 
+//         console.log(a);
+        
+//     };
+// }
+
+// //访问一个封闭空间内的全部变量
+// var f = fn();
+// f();
+// f();
+// f();
+// f();
+// f();
+// f();
+// f();
+// console.log(a)
+// f()
+
+ //惰性函数: 做一次性初始化的操作
+    function foo(){
+        //初始化操作
+        console.log("foo");
+        //更新函数的执行内容，更新函数体
+        foo = function(){
+            console.log("oo-foo");
+            
+        }
+        
+    }
+
+    foo();
+    foo();
+</script>
+</html>

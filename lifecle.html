@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试Vue</title>
+    <script src="js/vue.js"></script>
+     <!-- 生产环境版本，优化了尺寸和速度 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app" style="border: 1px solid red;padding: 10px">
+        <div >
+            根组件
+            <button @click="handleClick">根组件销毁</button>
+        </div>
+        <a-component></a-component>
+        <!-- <b-component></b-component> -->
+    </div>
+    
+    <script>
+        Vue.component('a-component' , {
+            template : `
+                <div @click="changeName" style="border:1px solid black;padding: 10px;margin: 10px">
+                    组件A{{ name }}
+                    <c-component/>
+                </div>
+            ` ,
+            data(){
+                return {
+                    name : 'a-component'
+                }
+            } ,
+            methods: {
+              changeName() {
+                this.name = 'A-Component'
+              }
+            },
+            beforeCreate(){
+                console.log('A组件beforeCreate')
+            } ,
+            created(){
+                console.log('A组件created')
+            } ,
+            beforeUpdate(){
+                console.log('A组件beforeUpdate')
+            } ,
+            update(){
+                console.log('A组件update')
+            } ,
+            beforeMount(){
+                console.log('A组件beforeMount')
+            } ,
+            mounted(){
+                console.log('A组件被mounted')
+            } ,
+            beforeUpdate() {
+                console.log('A组件被beforeUpdate')
+            },
+            updated() {
+                console.log('A组件被update')
+            },
+            beforeDestroy(){
+                console.log('A组件被beforeDestroy')
+            } ,
+            destroyed(){
+                console.log('A组件被destroyed')
+            }
+        });
+        Vue.component('c-component' , {
+            template : `
+                <div style="border:1px solid black" @click.stop="changeName">组件C{{ name }}</div>
+            ` ,
+            data(){
+                return {
+                    name : 'c-component'
+                }
+            } ,
+            methods: {
+                changeName() {
+                    this.name = 'C-Component'
+                }
+            },
+            beforeCreate(){
+                console.log('C组件beforeCreate')
+            } ,
+            created(){
+                console.log('C组件created')
+            } ,
+            beforeMount(){
+                console.log('C组件beforeMount')
+            } ,
+            mounted(){
+                console.log('C组件被mounted')
+            } ,
+            beforeUpdate() {
+                console.log('C组件被beforeUpdate')
+            },
+            updated() {
+                console.log('C组件被update')
+            },            
+            beforeDestroy(){
+                console.log('C组件被beforeDestroy')
+            } ,
+            destroyed(){
+                console.log('C组件被destroyed')
+            }
+        });
+ 
+ 
+        let vm = new Vue({
+            el : '#app' ,
+            computed : {} ,
+            methods : {
+                handleClick(){
+                    this.$destroy();
+                }
+            } ,
+            beforeCreate(){
+                console.log('根组件beforeCreate')
+            } ,
+            created(){
+                console.log('根组件created')
+            } ,
+            beforeMount(){
+                console.log('根组件beforeMount')
+            } ,
+            mounted(){
+                console.log('根组件被mounted')
+            } ,
+            beforeDestroy(){
+                console.log('根组件被beforeDestroy')
+            } ,
+            destroyed(){
+                console.log('根组件被destroyed')
+            }
+        })
+    
+    
+    </script>
+ 
+ 
+</body>
+</html>

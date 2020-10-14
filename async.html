@@ -99,21 +99,21 @@
 // let arr = [[1,2],[3,4]]
 // console.log(arr.flat())
 
-function deepClone(obj) {
-    let objClone = Array.isArray(obj) ? [] : {};
-    if (obj && typeof obj === "object") {
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                if (obj[key] && typeof obj[key] === "object") {
-                     objClone[key] = this.deepClone(obj[key]);
-                } else {
-                    objClone[key] = obj[key]; 
-                }
-            }
-        }
-    }
-    return objClone;
-}
+// function deepClone(obj) {
+//     let objClone = Array.isArray(obj) ? [] : {};
+//     if (obj && typeof obj === "object") {
+//         for (let key in obj) {
+//             if (obj.hasOwnProperty(key)) {
+//                 if (obj[key] && typeof obj[key] === "object") {
+//                      objClone[key] = this.deepClone(obj[key]);
+//                 } else {
+//                     objClone[key] = obj[key]; 
+//                 }
+//             }
+//         }
+//     }
+//     return objClone;
+// }
 
 // let oldTarget = {
 //     a: 5,
@@ -126,10 +126,113 @@ function deepClone(obj) {
 // oldTarget.b[0] = 100
 // console.log(oldTarget, newTarget)
 
-let arr = [1,2,3]
-for (let key in arr) {
-    console.log(arr[key])
+// let arr = [1,2,3]
+// for (let key in arr) {
+//     console.log(arr[key])
+// }
+
+    // async function async1() {
+    //     await async2();
+    //     console.log('async1 end');     // wei 2
+    // }
+    
+    // async function async2() {
+    //     console.log('async 2')
+    //     new Promise(function(resolve) {
+    //         console.log('p1')
+    //         resolve();
+    //         console.log('p2')
+    //     }).then(function() {         // wei 1
+    //         console.log('p3')        
+    //         setTimeout(function() {          // event loop 2
+    //             console.log('setTimeout1');
+    //         })
+    //         console.log('p4');
+    //     });
+    // }
+    
+    // setTimeout(function() {
+    //     console.log('setTimeout2');    //  event loop 1
+    // }, 0)
+    
+    // async1();
+    // console.log('script end')
+    // process.nextTick(() => {
+    //     console.log("nextTick");
+    // })
+    
+    // new Promise(function(resolve) {
+    //     console.log('promise3');
+    //     resolve();
+    //     setTimeout(() => {
+    //         console.log('setTimeout3')
+    //     })
+    // }).then(function() {
+    //     console.log('promise4');
+    // })
+    // .then(() => console.log('promise5'))
+    // .then(() => console.log('promise6'))
+    
+    // console.log('script end');
+
+
+    // const arr = [1,2,3,4,5,6]
+    // arr.forEach(async (item) => {
+    //     await sleep(item)
+    //     console.log('after', item)
+    // })
+    // function sleep(item){
+    //     return new Promise(res => {
+    //         setTimeout(() => {
+    //             res(console.log('before', item))
+    //         }, 2000)
+    //     })
+    // }
+
+// async function testAsync() {
+//     // return "hello async";
+// }
+
+// testAsync().then(res => {
+//     console.log(res)
+// })
+
+// function getSomething() {
+//     return "something";
+// }
+
+// async function testAsync() {
+//     return Promise.resolve("hello async");
+// }
+
+// async function test() {
+//     const v1 = await getSomething();
+//     console.log('1')
+//     const v2 = await testAsync();
+//     console.log('2')
+//     console.log(v1, v2);
+//     console.log('3')
+// }
+// console.log('script start')
+// test();
+
+function takeLongTime() {
+    return new Promise(resolve => {
+        console.log('2')
+        setTimeout(() => resolve("long_time_value"), 1000);
+    });
 }
+
+async function test() {
+    console.log('1')
+    const v = await takeLongTime();
+    console.log(3)
+    console.log(v);
+}
+
+test();
+console.log(4)
+
 
 </script>
 </html>

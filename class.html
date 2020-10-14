@@ -175,35 +175,84 @@
 //   }
 // }
 // console.log(count)
-function packageMaxValue(weight, value, size){
-    // 省略参数合法性校验
-    let bagMatrix = []
-    // 总重量循环，从重量1开始，计算到重量10，知道了重量9的价值，自然可以计算重量10的价值如何自大
-    for(let w = 0; w <= size; w++) {
-        // js不能直接创建二维数组，所以在此初始化数组
-        bagMatrix[w] = []
-        // 循环这五个有价值的物品
-        for (let j = 0; j < 5; j++) {
-            // 背包的容量为0，那么一个东西也装不下，此时的值肯定也是为0
-            if(w === 0) {
-                bagMatrix[w][j] = 0
-                continue
-            }
-            // 背包的容量小于物品j的重量，那么就没有上述情况a了
-            if(w < weight[j]){
-                bagMatrix[w][j] = bagMatrix[w][j-1] || 0
-                continue
-            }
-            //
-            bagMatrix[w][j] = Math.max((bagMatrix[w-weight[j]][j-1] || 0) + value[j], bagMatrix[w][j-1] || 0)
-        }
-    }
-    return bagMatrix
-}
+// function packageMaxValue(weight, value, size){
+//     // 省略参数合法性校验
+//     let bagMatrix = []
+//     // 总重量循环，从重量1开始，计算到重量10，知道了重量9的价值，自然可以计算重量10的价值如何自大
+//     for(let w = 0; w <= size; w++) {
+//         // js不能直接创建二维数组，所以在此初始化数组
+//         bagMatrix[w] = []
+//         // 循环这五个有价值的物品
+//         for (let j = 0; j < 5; j++) {
+//             // 背包的容量为0，那么一个东西也装不下，此时的值肯定也是为0
+//             if(w === 0) {
+//                 bagMatrix[w][j] = 0
+//                 continue
+//             }
+//             // 背包的容量小于物品j的重量，那么就没有上述情况a了
+//             if(w < weight[j]){
+//                 bagMatrix[w][j] = bagMatrix[w][j-1] || 0
+//                 continue
+//             }
+//             //
+//             bagMatrix[w][j] = Math.max((bagMatrix[w-weight[j]][j-1] || 0) + value[j], bagMatrix[w][j-1] || 0)
+//         }
+//     }
+//     return bagMatrix
+// }
     
-let weight = [4, 5, 6, 2, 2]
-let value = [6, 4, 5, 3, 6]
+// let weight = [4, 5, 6, 2, 2]
+// let value = [6, 4, 5, 3, 6]
  
-console.log(packageMaxValue(weight, value, 10))
+// console.log(packageMaxValue(weight, value, 10))
+
+// class Student {
+//   constructor() {
+//     console.log("I'm a student.");
+//   }
+ 
+//   study() {
+//     console.log('study!');
+//   }
+   
+//   // 定义静态方法，可以直接由类名调用，不需要实例化
+//   static read(bookName) {
+//     console.log("Reading Now: " + bookName);
+//   }
+// }
+// Student.read('kk book')
+// let zbl = new Student()
+// zbl.study('FE')
+// let b = {
+//     a: 'x',
+//     c: 'y'
+// }
+// let arr = ['bb',2,3]
+// for (let item in arr) {
+//   console.log(item)
+//   console.log(arr[item])
+// }
+
+  //  父类构造函数
+  function Parent2() {
+    this.name = 'parent2';
+    this.play = [1, 2, 3] // 数组类型的属性会被所有的实例共享
+  }
+  Parent2.prototype.age='100' // 给构造函数添加原型属性
+
+  // 子类
+  function Child2() {
+    this.type = 'child2';
+  }
+
+  // 核心代码，原型继承的本质是把子类的原型指向父类的实例
+  Child2.prototype = new Parent2(); 
+  var s1 = new Child2(); // 实例化一个Child2出来，并不能向Parent2传递参数
+  var s2 = new Child2();
+  s1.play.push(4);
+  s2.age = 200
+  console.log(s1.age, s2.age);
+
+
 </script>
 </html>

@@ -30,11 +30,11 @@
 // function Per(){}
 // console.log(new Per())
 
-let persons = [
-    {name: '张三', age: 10},
-    {name: '李四', age: 18},
-    {name: '王五', age: 49}
-];
+// let persons = [
+//     {name: '张三', age: 10},
+//     {name: '李四', age: 18},
+//     {name: '王五', age: 49}
+// ];
 // // 需求把上面三个人的年龄取出来生成一个新的数组
 // // 方法一 直接遍历取
 // let ages = [];
@@ -49,29 +49,144 @@ let persons = [
 // console.log(mapAges); // [10, 18, 49]
 
 
-function myMap(arr, fn) {
-    let newArr = [];
-    for(let i in arr) {
-        newArr.push(
-            fn(arr[i])
-        )
-    }
-    return newArr;
+// function myMap(arr, fn) {
+//     let newArr = [];
+//     for(let i in arr) {
+//         newArr.push(
+//             fn(arr[i])
+//         )
+//     }
+//     return newArr;
+// }
+// // 用myMap函数实现一下上面的需求
+// myMap(persons, function(item){return item.age}); // [10, 18, 49]
+// // 试着把写进Array.prototype原型上
+// Array.prototype.myMap = function(fn){
+//     let array = this;
+//     console.log(this)
+//     let len = array.length;
+//     let newArr = [];
+//     for(let i=0; i<len; i++){
+//         newArr.push(fn(array[i], i, array))
+//     }
+//     return newArr;
+// }
+// let a = persons.myMap((item, index, arr) => {return item.age}) // [10, 18, 49]
+// console.log(a)
+
+    // let n = [10, 20]
+    // let m = n;
+    // let x = m;
+    // m[0] = 100;  // [100, 20]
+    // x = [30, 40];
+    // x[0] = 200;  [200, 20]
+    // m = x;   //[200, 40]
+    // m[1] = 300;
+    // n[2] = 400;
+    // console.log(n, m, x) 
+
+// let arr = [1,2,3,[4,5],[6,[7,[8,[9]]]]]
+// // console.log(arr)
+// function flatArr(arr) {
+//     let res = []
+//     for(let i of arr) {
+//         if (Array.isArray(i)) {
+//           res = res.concat(flatArr(i))
+//         } else {
+//           res.push(i)
+//         }
+//     }
+//     return res
+// }
+// console.log(flatArr(arr))
+
+
+// 计算数组中每一项的和
+// var sum = [0, 1, 2, 3].reduce( (accumulator, currentValue) => {
+//   console.log(accumulator + '---' + currentValue)
+//   return accumulator + currentValue;
+// }, 0);
+
+
+
+// class Parent{
+//   constructor(name) {
+//     this.name=name
+//   }
+
+//   getName(){return this.name}
+// }
+
+// class Children extends Parent {
+//   constructor(props){
+//     super(props)
+//   }
+// }
+// let p = new Parent('kk');
+// console.log(p)
+// var x = [1];
+// var y = x;
+
+// x[0] = 100
+// console.log(x,y);
+// function Abc() { console.log(this); };
+// Abc()
+// new Abc();
+// var x = 1;
+// var obj = {
+//   x: 2,
+//   getX: function () {
+//     return console.log(this.x);
+//   }
+// };
+
+// obj.getX()
+// let a = obj.getX
+// console.log(a)
+// console.log("A");
+// setTimeout(() => console.log("B"), 0);
+// setTimeout(() => console.log("C"), 0);
+// console.log("D");
+// setTimeout(function() {
+//   console.log("A");
+// }, 0);
+// Promise.resolve().then(function() {
+//   console.log("B");
+// }).then(function() {
+//   console.log("C");
+// });
+
+// console.log("D");
+// let obj1 = {
+//   a:1,
+//   b:2
+// }
+
+// function mutate(obj) {
+//   obj = {a:4, c:6}
+// }
+
+// console.log(obj1)
+// mutate(obj1)
+// console.log(obj1)
+
+
+// 在数组原型链上添加洗牌算法
+Array.prototype.shuffle = function(){
+  let arr = this
+  let totalLength = arr.length
+  while(totalLength > 0) {
+    let random = Math.floor(Math.random() * totalLength)
+    totalLength--
+    let temp = arr[totalLength]
+    arr[totalLength] = arr[random]
+    arr[random] = temp
+  }
+  return arr
 }
-// 用myMap函数实现一下上面的需求
-myMap(persons, function(item){return item.age}); // [10, 18, 49]
-// 试着把写进Array.prototype原型上
-Array.prototype.myMap = function(fn){
-    let array = this;
-    console.log(this)
-    let len = array.length;
-    let newArr = [];
-    for(let i=0; i<len; i++){
-        newArr.push(fn(array[i], i, array))
-    }
-    return newArr;
-}
-let a = persons.myMap((item, index, arr) => {return item.age}) // [10, 18, 49]
+
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+let a  = arr.shuffle(arr)
 console.log(a)
 </script>
 </html>
