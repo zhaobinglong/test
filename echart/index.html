@@ -4,11 +4,11 @@
 	<title>test</title>
 </head>
 <script type="text/javascript" src="./echarts.min.js"></script>
-
-<body onbeforeunload="unloadHandle()">
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<body >
     <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
     <div id="main" style="width: 600px;height:400px;"></div>
-</body>
+</body onbeforeunload="return unloadHandle()">
     <script type="text/javascript">
     	// 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
@@ -39,7 +39,7 @@
 
 
 		
-        deepGetData(1, total)
+        // deepGetData(1, total)
 
         function initCanvas(res) {
 
@@ -147,21 +147,21 @@
 	    }
     </script>
 <script type="text/javascript">
-
 	window.addEventListener('pagehide', unloadHandle, false);
 
-
+    $(window).on('beforeunload',function(){
+    	return unloadHandle()
+    });
+    // $(window).on('pagehide',function(){return'Your own message goes here...';});
 	function unloadHandle(){
-      // alert('start unloadHandle')
-      // event.returnValue="确定离开当前页面吗？";
-     var url = 'http://m.baige.me/api/getLinks?bookId=55'
-	  // $.post('/api/closePage',{bookId:bookId,bookViewId:bookViewId});
-  	fetch(url)
-	  .then(function(response) {
-	    return response.json();
-	  })
-	  .then(function(myJson) {
-	  });
+	    var url = 'http://oa.zhaobinglong.site/'
+	  	fetch(url,{mode: 'no-cors'})
+		  .then(function(response) {
+		    return response;
+		  })
+		  .then(function(myJson) {
+
+		  });
 	}
  
 </script>
