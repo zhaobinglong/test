@@ -147,11 +147,25 @@
 	    }
     </script>
 <script type="text/javascript">
-	window.addEventListener('pagehide', unloadHandle, false);
+
+    $(window).on('pagehide',function(){
+    	return unloadHandle()
+    });
 
     $(window).on('beforeunload',function(){
     	return unloadHandle()
     });
+
+    
+    // 页面切换
+	document.addEventListener("visibilitychange", () => {
+		// 页面被隐藏
+	    if (document.hidden) {
+	      unloadHandle()
+	    } 
+	});
+
+
     // $(window).on('pagehide',function(){return'Your own message goes here...';});
 	function unloadHandle(){
 	    var url = 'http://oa.zhaobinglong.site/'
@@ -163,6 +177,15 @@
 
 		  });
 	}
+
+
+/**
+
+测试整理
+PC浏览器：刷新可监控，关闭可监控，页面隐藏可监控
+微信内置浏览器：刷新可监控，没有关闭事件
+APP浏览器： 刷新可监控，隐藏监控失败
+**/
  
 </script>
 </html>
